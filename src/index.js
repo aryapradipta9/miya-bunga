@@ -1,5 +1,3 @@
-import "./styles.css";
-
 // document.getElementById("app").innerHTML = `
 // <h1>Hello Vanilla!</h1>
 // <div>
@@ -14,7 +12,7 @@ import "./styles.css";
 function getVectorFromTwoPoints(point1, point2) {
   return {
     x: point2.x - point1.x,
-    y: point2.y - point1.y
+    y: point2.y - point1.y,
   };
 }
 
@@ -27,8 +25,8 @@ function getDistanceBetweenPoints(point1, point2) {
 
 // Animation constants
 
-const FRAME_DURATION = 1000 / 10; // 60fps frame duration ~16.66ms
-const getTime = typeof performance === "function" ? performance.now : Date.now;
+const FRAME_DURATION = 1000 / 30; // 60fps frame duration ~16.66ms
+const getTime = typeof performance === 'function' ? performance.now : Date.now;
 
 // Global requestAnimationFrame ID so we can cancel it when user clicks on "Draw again"
 let rafID;
@@ -43,7 +41,6 @@ function drawLine(
   multiStartPoint = [],
   multiEndPoint
 ) {
-  console.log("exec");
   let lastUpdate = getTime();
 
   // Set initial state
@@ -55,7 +52,7 @@ function drawLine(
 
   let vectorStep = {
     x: vector.x * lineStep,
-    y: vector.y * lineStep
+    y: vector.y * lineStep,
   };
 
   // multiple version
@@ -76,7 +73,7 @@ function drawLine(
     multiLineStep.push(drawingSpeed / multiStartToEndDistance[i]);
     multiVectorStep.push({
       x: multiVector[i].x * multiLineStep[i],
-      y: multiVector[i].y * multiLineStep[i]
+      y: multiVector[i].y * multiLineStep[i],
     });
   }
 
@@ -86,7 +83,7 @@ function drawLine(
 
     const deltaVector = {
       x: vectorStep.x * delta,
-      y: vectorStep.y * delta
+      y: vectorStep.y * delta,
     };
 
     // // Add starting length if any
@@ -103,7 +100,7 @@ function drawLine(
     // Set next point
     let nextPoint = {
       x: currentPoint.x + deltaVector.x,
-      y: currentPoint.y + deltaVector.y
+      y: currentPoint.y + deltaVector.y,
     };
 
     let newStartingLength = 0;
@@ -168,11 +165,11 @@ function drawLine(
     for (let i = 0; i < multiStartPoint.length; i++) {
       deltaVectorm.push({
         x: multiVectorStep[i].x * delta,
-        y: multiVectorStep[i].y * delta
+        y: multiVectorStep[i].y * delta,
       });
       nextPointm.push({
         x: multiCurrentPoint[i].x + deltaVectorm[i].x,
-        y: multiCurrentPoint[i].y + deltaVectorm[i].y
+        y: multiCurrentPoint[i].y + deltaVectorm[i].y,
       });
 
       let newStartingLengthm = 0;
@@ -255,20 +252,17 @@ function drawPolygon(
   const start = {};
   const end = {};
 
-  console.log(startingPointIndex);
   if (startingPointIndex >= multiVertices.length) {
     if (onAnimationEnd) {
       onAnimationEnd();
     }
     return;
   }
-  console.log("start");
   drawLine(
     start,
     end,
     drawingSpeed,
     (startingLength) => {
-      console.log("done", startingPointIndex);
       const newIndex = startingPointIndex + 1;
       ctx.translate(300, 300);
       ctx.rotate((22.5 * Math.PI) / 180);
@@ -305,67 +299,67 @@ const vertices = [
 const multiVertices = [
   [
     [
-      { x: 500, y: 100, color: "#ffa500" },
-      { x: 500, y: 500, color: "#008000" },
-      { x: 100, y: 500, color: "#4b0082" },
-      { x: 100, y: 100, color: "cyan" }
+      { x: 500, y: 100, color: '#ffa500' },
+      { x: 500, y: 500, color: '#008000' },
+      { x: 100, y: 500, color: '#4b0082' },
+      { x: 100, y: 100, color: 'cyan' },
     ],
     [
       { x: 300, y: 300 },
       { x: 300, y: 300 },
       { x: 300, y: 300 },
-      { x: 300, y: 300 }
-    ]
+      { x: 300, y: 300 },
+    ],
   ],
   [
     [
-      { x: 500, y: 100, color: "#ffff00" },
-      { x: 500, y: 500, color: "#0000ff" },
-      { x: 100, y: 500, color: "#ee82ee" },
-      { x: 100, y: 100, color: "#ff0000" }
+      { x: 500, y: 100, color: '#ffff00' },
+      { x: 500, y: 500, color: '#0000ff' },
+      { x: 100, y: 500, color: '#ee82ee' },
+      { x: 100, y: 100, color: '#ff0000' },
     ],
     [
       { x: 300, y: 300 },
       { x: 300, y: 300 },
       { x: 300, y: 300 },
-      { x: 300, y: 300 }
-    ]
+      { x: 300, y: 300 },
+    ],
   ],
   [
     [
-      { x: 500, y: 100, color: "#ffff00" },
-      { x: 500, y: 500, color: "#0000ff" },
-      { x: 100, y: 500, color: "#ee82ee" },
-      { x: 100, y: 100, color: "#ff0000" }
+      { x: 500, y: 100, color: '#ffff00' },
+      { x: 500, y: 500, color: '#0000ff' },
+      { x: 100, y: 500, color: '#ee82ee' },
+      { x: 100, y: 100, color: '#ff0000' },
     ],
     [
       { x: 300, y: 300 },
       { x: 300, y: 300 },
       { x: 300, y: 300 },
-      { x: 300, y: 300 }
-    ]
+      { x: 300, y: 300 },
+    ],
   ],
   [
     [
-      { x: 500, y: 100, color: "#008000" },
-      { x: 500, y: 500, color: "#4b0082" },
-      { x: 100, y: 500, color: "cyan" },
-      { x: 100, y: 100, color: "#ffa500" }
+      { x: 500, y: 100, color: '#008000' },
+      { x: 500, y: 500, color: '#4b0082' },
+      { x: 100, y: 500, color: 'cyan' },
+      { x: 100, y: 100, color: '#ffa500' },
     ],
     [
       { x: 300, y: 300 },
       { x: 300, y: 300 },
       { x: 300, y: 300 },
-      { x: 300, y: 300 }
-    ]
-  ]
+      { x: 300, y: 300 },
+    ],
+  ],
 ];
 
-const canvas = document.querySelector("canvas");
-let ctx = canvas.getContext("2d");
-ctx.fillStyle = "#fff";
+const canvas = document.querySelector('canvas');
+let ctx = canvas.getContext('2d');
+ctx.fillStyle = '#fff';
 
-ctx.lineCap = "round";
+ctx.lineCap = 'round';
 ctx.lineWidth = 0.5;
 
 // ctx.beginPath();
@@ -390,10 +384,10 @@ function draw() {
   // Draw polygon
   // ctx.rotate((45 * Math.PI) / 180);
 
-  drawPolygon(vertices, 30, () => console.log("done"), multiVertices);
+  drawPolygon(vertices, 10, () => console.log('done'), multiVertices);
 }
 
 draw();
 
-const button = document.querySelector("button");
-button.addEventListener("click", draw);
+// const button = document.querySelector('button');
+// button.addEventListener('click', draw);
